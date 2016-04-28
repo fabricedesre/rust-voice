@@ -1,1 +1,1 @@
-paths = ["./pocketsphinx-sys"]
+paths = ["./pocketsphinx-rs", "./pocketsphinx-sys"]
