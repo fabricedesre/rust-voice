@@ -9,7 +9,7 @@ extern crate pocketsphinx;
 use portaudio as pa;
 use std::time::{ Duration, SystemTime };
 
-const SAMPLE_RATE: f64 = 44_100.0;
+const SAMPLE_RATE: f64 = 16_000.0;
 const FRAMES: u32 = 256;
 const CHANNELS: i32 = 1;
 const INTERLEAVED: bool = true;
@@ -65,7 +65,7 @@ fn run() -> Result<(), pa::Error> {
 
     let ps_config = pocketsphinx::CmdLn::init(true, &[
         "-hmm", "./model/en-us/en-us",
-        "-lm", "./model/en-us/en-us.lm.bin",
+        "-jsgf", "./model/grammar.jsgf",
         "-dict", "./model/en-us/cmudict-en-us.dict",
         ]).unwrap();
     let ps_decoder = pocketsphinx::PsDecoder::init(ps_config);
