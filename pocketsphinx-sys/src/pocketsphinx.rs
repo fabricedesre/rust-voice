@@ -11,6 +11,12 @@ use libc::{c_int, c_char};
 #[link(name="pocketsphinx")]
 extern {
 
+    pub fn cmd_ln_init(inout_cmdln: *mut cmd_ln_t,
+                       defn: *const arg_t,
+                       strict: i32, ...)
+                       -> *mut cmd_ln_t;
+
+
     pub fn cmd_ln_parse_r(inout_cmdln: *mut cmd_ln_t,
                           defn: *const arg_t,
                           argc: i32,
@@ -56,3 +62,5 @@ extern {
     pub fn ps_seg_word(seg: *const ps_seg_t) -> *const c_char;
 
 }
+
+
