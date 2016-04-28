@@ -63,7 +63,7 @@ fn run() -> Result<(), pa::Error> {
     let mut start = SystemTime::now();
     let delay = Duration::new(5, 0);
 
-    let ps_config = pocketsphinx::CmdLn::init(true, &["pocketsphinx",
+    let ps_config = pocketsphinx::CmdLn::init(true, &[
         "-hmm", "./model/en-us/en-us",
         "-lm", "./model/en-us/en-us.lm.bin",
         "-dict", "./model/en-us/cmudict-en-us.dict",

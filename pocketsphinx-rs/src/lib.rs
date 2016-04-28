@@ -32,11 +32,14 @@ impl CmdLn {
         let c_args: Vec<_> = args.iter().map(|s| CString::new(*s).unwrap()).collect();
         let args_ptrs: Vec<_> = c_args.iter().map(|s| s.as_ptr()).collect();
         let raw = unsafe {
-            bindings::cmd_ln_parse_r(ptr::null_mut(),
-                                     bindings::ps_args(),
-                                     args_ptrs.len() as i32,
-                                     args_ptrs.as_ptr(),
-                                     strict as i32)
+            // FIXME: Don't hardcode the 6 parameters...
+            bindings::cmd_ln_init(ptr::null_mut(),
+                                  bindings::ps_args(),
+                                  strict as i32,
+                                  args_ptrs[0], args_ptrs[1],
+                                  args_ptrs[2], args_ptrs[3],
+                                  args_ptrs[4], args_ptrs[5],
+                                  ptr::null_mut() as *mut CString)
         };
         if raw.is_null() {
             return Err(Error);
