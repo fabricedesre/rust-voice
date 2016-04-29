@@ -69,9 +69,7 @@ fn run() -> Result<(), pa::Error> {
         "-dict", "./model/en-us/cmudict-en-us.dict",
         ]).unwrap();
     let ps_decoder = pocketsphinx::PsDecoder::init(ps_config);
-    println!("Before start_utt()");
     ps_decoder.start_utt(Some("utt_id"));
-    println!("After start_utt()");
 
     while let true = try!(stream.is_active()) {
         while let Ok(frames) = receiver.try_recv() {
